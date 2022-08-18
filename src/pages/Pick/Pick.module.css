@@ -1,0 +1,9 @@
+.pickGame {
+  display: flex;
+  flex-direction: column;
+}
+.pickGame a {
+  margin-bottom: 16px;
+}
+
+/*# sourceMappingURL=Pick.module.css.map */
