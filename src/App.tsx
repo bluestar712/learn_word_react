@@ -6,24 +6,28 @@ import {Layout} from "antd";
 import './App.less';
 import {useActions} from "./hooks/useActions";
 import {IUser} from "./models/IUser";
+import {useTelegram} from "./hooks/useTelegram";
 
-const App:FC = () => {
+const App: FC = () => {
     const {setUser, setIsAuth} = useActions();
+    const {tg} = useTelegram();
 
     useEffect(() => {
-        if(localStorage.getItem('auth')) {
+        if (localStorage.getItem('auth')) {
             setUser({username: localStorage.getItem('username' || '')} as IUser)
             setIsAuth(true);
         }
+        tg.ready();
     }, [])
+
 
     return (
         <Layout>
             <Navbar/>
             <Layout.Content>
-                <AppRouter />
+                <AppRouter/>
             </Layout.Content>
-            <Footer />
+            <Footer/>
         </Layout>
     );
 };
