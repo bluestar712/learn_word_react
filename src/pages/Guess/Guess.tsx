@@ -50,7 +50,7 @@ const Guess = () => {
     return (
         <>
             <h1>{correct?.tat}</h1>
-            <audio src={`http://tatarmonru.temp.swtest.ru/audio/${correct?.tat.toLowerCase()}.mp3`} controls>
+            <audio src={`https://innostudy.ru/audio/${correct?.tat.toLowerCase()}.mp3`} controls>
                 Your browser does not support the audio element.
             </audio>
             {/*<audio src={correct?.audio} controls>*/}
