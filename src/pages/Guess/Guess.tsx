@@ -46,13 +46,16 @@ const Guess = () => {
             <div>Loading</div>
         )
     }
-
+    // http://tatarmonru.temp.swtest.ru/audio/%D0%B0%D0%BA.mp3
     return (
         <>
             <h1>{correct?.tat}</h1>
-            <audio src={correct?.audio} controls>
+            <audio src={`http://tatarmonru.temp.swtest.ru/audio/${correct?.tat.toLowerCase()}.mp3`} controls>
                 Your browser does not support the audio element.
             </audio>
+            {/*<audio src={correct?.audio} controls>*/}
+            {/*    Your browser does not support the audio element.*/}
+            {/*</audio>*/}
             <>
                 {list.map(({id, tat, rus}) =>
                     <Button
