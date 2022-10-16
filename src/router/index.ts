@@ -20,7 +20,8 @@ export enum RouteNames {
     GUESS = '/guess',
     ALIAS = '/alias',
     FORM = '/form',
-    PHRASE = '/phrase'
+    PHRASE = '/phrase',
+    TELEGRAM = 'https://t.me/ChamalBot'
 }
 
 export const publicRoutes: IRoute[] = [
