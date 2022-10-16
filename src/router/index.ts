@@ -1,7 +1,6 @@
 import React from "react";
 import Alias from "../pages/Alias/Alias";
 import Guess from "../pages/Guess/Guess";
-import Login from "../pages/Login";
 import Pick from "../pages/Pick/Pick";
 import Welcome from "../pages/Welcome/Welcome";
 import Form from "../components/Form/Form";
@@ -26,7 +25,6 @@ export enum RouteNames {
 
 export const publicRoutes: IRoute[] = [
     {path: RouteNames.PICK, exact: true, component: Pick},
-    {path: RouteNames.LOGIN, exact: true, component: Login},
     {path: RouteNames.MAIN, exact: true, component: Welcome},
     {path: RouteNames.ALIAS, exact: true, component: Alias},
     {path: RouteNames.GUESS, exact: true, component: Guess},

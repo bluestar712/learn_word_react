@@ -3,20 +3,13 @@ import AppRouter from "./components/AppRouter";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import {Layout} from "antd";
-import './App.less';
-import {useActions} from "./hooks/useActions";
-import {IUser} from "./models/IUser";
 import {useTelegram} from "./hooks/useTelegram";
+import './App.less';
 
 const App: FC = () => {
-    const {setUser, setIsAuth} = useActions();
     const {tg} = useTelegram();
 
     useEffect(() => {
-        if (localStorage.getItem('auth')) {
-            setUser({username: localStorage.getItem('username' || '')} as IUser)
-            setIsAuth(true);
-        }
         tg.ready();
     }, [])
 

@@ -2,30 +2,22 @@ import {Button, Modal} from "antd";
 import React, {useEffect, useState} from 'react';
 import {ReactComponent as Happy} from "../../assets/happy.svg";
 import {ReactComponent as Sad} from "../../assets/sad.svg";
-import {useActions} from "../../hooks/useActions";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {IWord} from "../../models/IWord";
 import {getShuffled} from "../../utils/utils";
+import {useAppSelector} from "../../store/hooks";
 
 const Guess = () => {
-    const {fetchWords} = useActions();
-    const {words, isLoading} = useTypedSelector(state => state.words);
+    const {words} = useAppSelector(state => state.word)
     const [list, setList] = useState<IWord[]>([])
     const [correct, setCorrect] = useState<IWord | undefined>(undefined)
     const [clicked, setClicked] = useState<IWord | undefined>(undefined)
     const [modalIsOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        if (words.length > 0) {
-            const tempList = getShuffled(words).slice(0, 4)
-            setList(tempList)
-            setCorrect(getShuffled(tempList)[0])
-            localStorage.setItem('words.json', JSON.stringify(words))
-        } else {
-            fetchWords()
-        }
-
-    }, [words])
+        const tempList = getShuffled(words).slice(0, 4)
+        setList(tempList)
+        setCorrect(getShuffled(tempList)[0])
+    }, [])
 
 
     const closeModal = () => {
@@ -41,12 +33,6 @@ const Guess = () => {
         setIsOpen(true);
     }
 
-    if (isLoading || words.length === 0) {
-        return (
-            <div>Loading</div>
-        )
-    }
-    // http://tatarmonru.temp.swtest.ru/audio/%D0%B0%D0%BA.mp3
     return (
         <>
             <h1>{correct?.tat}</h1>

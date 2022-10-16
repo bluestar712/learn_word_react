@@ -1,19 +1,18 @@
 import {Button, Modal} from "antd";
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {useTimer} from 'react-timer-hook';
 import {ReactComponent as Happy} from "../../assets/happy.svg";
-import {useActions} from "../../hooks/useActions";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {getShuffled} from "../../utils/utils";
 import classes from './Alias.module.scss'
+import {useAppSelector} from "../../store/hooks";
 
 const Alias = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [index, setIndex] = useState(0)
     const [correct, setCorrect] = useState(0)
     const [skip, setSkip] = useState(0)
-    const {fetchWords} = useActions();
-    const {words, isLoading} = useTypedSelector(state => state.words);
+    const {words} = useAppSelector(state => state.word);
+
     const shuffled = useMemo(() =>
             getShuffled(words)
         , [words])
@@ -26,24 +25,12 @@ const Alias = () => {
     } = useTimer({expiryTimestamp: time, autoStart: false, onExpire: () => setModalVisible(true)})
 
 
-    useEffect(() => {
-        if (words.length === 0) {
-            fetchWords()
-        }
-    }, [words])
-
     const resetGame = () => {
         setCorrect(0)
         setSkip(0)
         time = new Date();
         time.setSeconds(time.getSeconds() + 60);
         restart(time)
-    }
-
-    if (isLoading || words.length === 0) {
-        return (
-            <div>Loading</div>
-        )
     }
 
     if (!isRunning) {
@@ -66,7 +53,7 @@ const Alias = () => {
                        title="Добавить событие"
                        footer={null}
                        onCancel={() => setModalVisible(false)}
-                       >
+                >
                     <>
                         <Happy style={{width: 120, height: 120}}/>
                         <span>{`Верно: ${correct}`}</span>
@@ -107,9 +94,9 @@ const Alias = () => {
                     <Button
                         type="primary" shape="round" size={"large"}
                         onClick={() => {
-                        setCorrect(prevState => prevState + 1)
-                        setIndex(prevState => prevState + 1)
-                    }}
+                            setCorrect(prevState => prevState + 1)
+                            setIndex(prevState => prevState + 1)
+                        }}
                     >
                         Верно
                     </Button>
