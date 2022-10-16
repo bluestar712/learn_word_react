@@ -10,7 +10,7 @@ export const putWord = async (word: IWord) => {
     try {
         const res = await axios.put(`https://chamala-backend.herokuapp.com/api/phrase/${word.id}`, {
             ...word,
-            audio: `https://talgat.corpus.tatar/search/rhvoice.php?t=${word.tat}`
+            // audio: `https://talgat.corpus.tatar/search/rhvoice.php?t=${word.tat}`
         })
         console.log('putWord', res.data)
     } catch (e) {

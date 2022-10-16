@@ -56,7 +56,7 @@ const Guess = () => {
             {/*<audio src={correct?.audio} controls>*/}
             {/*    Your browser does not support the audio element.*/}
             {/*</audio>*/}
-            <>
+            <div style={{marginTop: 16, display: 'flex', flexDirection: 'column'}}>
                 {list.map(({id, tat, rus}) =>
                     <Button
                         key={id} style={{
@@ -65,7 +65,7 @@ const Guess = () => {
                         type="primary" shape="round" size={"large"}
                         onClick={() => handleClick(id)}>{rus}</Button>
                 )}
-            </>
+            </div>
             <Modal
                 visible={modalIsOpen}
                 onCancel={closeModal}

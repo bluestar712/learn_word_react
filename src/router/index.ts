@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Pick from "../pages/Pick/Pick";
 import Welcome from "../pages/Welcome/Welcome";
 import Form from "../components/Form/Form";
+import Phrase from "../pages/Phrase/Phrase";
 
 export interface IRoute {
     path: string;
@@ -18,7 +19,8 @@ export enum RouteNames {
     MAIN = '/',
     GUESS = '/guess',
     ALIAS = '/alias',
-    FORM = '/form'
+    FORM = '/form',
+    PHRASE = '/phrase'
 }
 
 export const publicRoutes: IRoute[] = [
@@ -27,7 +29,8 @@ export const publicRoutes: IRoute[] = [
     {path: RouteNames.MAIN, exact: true, component: Welcome},
     {path: RouteNames.ALIAS, exact: true, component: Alias},
     {path: RouteNames.GUESS, exact: true, component: Guess},
-    {path: RouteNames.FORM, exact: true, component: Form}
+    {path: RouteNames.FORM, exact: true, component: Form},
+    {path: RouteNames.PHRASE, exact: true, component: Phrase},
 ]
 
 export const privateRoutes: IRoute[] = [
