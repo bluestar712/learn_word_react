@@ -1,20 +1,22 @@
 import React from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {publicRoutes, RouteNames} from "../router";
+import Welcome from "../pages/Welcome";
+import Pick from "../pages/Pick";
+import Phrase from "../pages/Phrase";
+import Alias from "../pages/Alias";
+import Guess from "../pages/Guess";
 
 const AppRouter = () => {
-
     return (
-            <Switch>
-                {publicRoutes.map(route =>
-                    <Route path={route.path}
-                           exact={route.exact}
-                           component={route.component}
-                           key={route.path}
-                    />
-                )}
-                <Redirect to={RouteNames.MAIN}/>
-            </Switch>
+        <Routes>
+            <Route path={RouteNames.PICK} element={<Pick/>}/>
+            <Route path={RouteNames.PHRASE} element={<Phrase/>}/>
+            <Route path={RouteNames.ALIAS} element={<Alias/>}/>
+            <Route path={RouteNames.GUESS} element={<Guess/>}/>
+            <Route path={RouteNames.MAIN} element={<Welcome/>}/>
+            <Route index element={<Welcome/>}/>
+        </Routes>
 
     );
 };

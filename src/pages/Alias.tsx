@@ -1,10 +1,9 @@
-import {Button, Modal} from "antd";
 import React, {useMemo, useState} from 'react';
 import {useTimer} from 'react-timer-hook';
-import {ReactComponent as Happy} from "../../assets/happy.svg";
-import {getShuffled} from "../../utils/utils";
-import classes from './Alias.module.scss'
-import {useAppSelector} from "../../store/hooks";
+import {ReactComponent as Happy} from "../assets/happy.svg";
+import {getShuffled} from "../utils/utils";
+import {useAppSelector} from "../store/hooks";
+import Modal from "../components/Modal/Modal";
 
 const Alias = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -35,39 +34,35 @@ const Alias = () => {
 
     if (!isRunning) {
         return (
-            <div className={classes.alias}>
+            <div>
                 <h1>Алиас</h1>
                 <span>Нажми Старт для начала игры!</span>
                 <div style={{fontSize: '100px'}}>
                     {seconds}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <Button
-                        type="primary" shape="round" size={"large"}
+                    <button
                         onClick={resetGame}
                     >
                         Старт
-                    </Button>
+                    </button>
                 </div>
-                <Modal visible={modalVisible}
-                       title="Добавить событие"
-                       footer={null}
-                       onCancel={() => setModalVisible(false)}
+                {modalVisible && <Modal visible={modalVisible}
                 >
                     <>
                         <Happy style={{width: 120, height: 120}}/>
                         <span>{`Верно: ${correct}`}</span>
                         <span>{`Пропущено: ${skip}`}</span>
                         <span>{`Итог: ${correct - skip}`}</span>
-                        <Button onClick={resetGame}>Старт</Button>
+                        <button onClick={resetGame}>Старт</button>
                     </>
-                </Modal>
+                </Modal>}
             </div>
         )
     }
 
     return (
-        <div className={classes.alias}>
+        <div>
             <div>
                 <span>{`Верно: ${correct}`}</span>
                 <span>{`Пропущено: ${skip}`}</span>
@@ -82,24 +77,25 @@ const Alias = () => {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <div>
 
-                    <Button
-                        type="primary" shape="round" size={"large"}
+                    <button
+
                         onClick={() => {
                             setSkip(prevState => prevState + 1)
                             setIndex(prevState => prevState + 1)
                         }}
-                    >Пропустить</Button>
+                    >Пропустить
+                    </button>
                     &nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;
-                    <Button
-                        type="primary" shape="round" size={"large"}
+                    <button
+
                         onClick={() => {
                             setCorrect(prevState => prevState + 1)
                             setIndex(prevState => prevState + 1)
                         }}
                     >
                         Верно
-                    </Button>
+                    </button>
                 </div>
             </div>
 

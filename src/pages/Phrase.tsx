@@ -1,10 +1,10 @@
-import {Button, Modal} from "antd";
 import React, {useEffect, useState} from 'react';
-import {ReactComponent as Happy} from "../../assets/happy.svg";
-import {ReactComponent as Sad} from "../../assets/sad.svg";
-import {IWord} from "../../models/IWord";
-import {getShuffled} from "../../utils/utils";
-import {useAppSelector} from "../../store/hooks";
+import {ReactComponent as Happy} from "../assets/happy.svg";
+import {ReactComponent as Sad} from "../assets/sad.svg";
+import {IWord} from "../models/IWord";
+import {getShuffled} from "../utils/utils";
+import {useAppSelector} from "../store/hooks";
+import Modal from "../components/Modal/Modal";
 
 
 const Phrase = () => {
@@ -42,29 +42,25 @@ const Phrase = () => {
             </audio>
             <div style={{marginTop: 16, display: 'flex', flexDirection: 'column'}}>
                 {list.map(({id, tat, rus}) =>
-                    <Button
+                    <button
                         key={id} style={{
                         marginBottom: 16
                     }}
-                        type="primary" shape="round" size={"large"}
-                        onClick={() => handleClick(id)}>{rus}</Button>
+
+                        onClick={() => handleClick(id)}>{rus}</button>
                 )}
             </div>
-            <Modal
-                visible={modalIsOpen}
-                onCancel={closeModal}
-                onOk={closeModal}
-                footer={null}
-                closable={false}
-            >
-                {correct?.id === clicked?.id ? <Happy style={{width: 90, height: 90}}/> :
-                    <Sad style={{width: 90, height: 90}}/>}
-                <h3>{correct?.id === clicked?.id ? 'Верно' : 'Неверно'}</h3>
-                <Button
-                    type={'primary'}
-                    size={'large'}
-                    onClick={closeModal}>Далее</Button>
-            </Modal>
+
+            {modalIsOpen &&
+                <Modal visible={modalIsOpen}>
+                    {correct?.id === clicked?.id ? <Happy style={{width: 90, height: 90}}/> :
+                        <Sad style={{width: 90, height: 90}}/>}
+                    <h3>{correct?.id === clicked?.id ? 'Верно' : 'Неверно'}</h3>
+                    <button
+                        onClick={closeModal}>Далее
+                    </button>
+                </Modal>
+            }
         </>
     );
 };
