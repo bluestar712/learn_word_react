@@ -1,7 +1,12 @@
 import React from 'react';
-import './Modal.css'
+import classes from './Modal.module.css'
 
-const Modal = ({visible, children}) => {
+interface ModalProps {
+    visible?: boolean
+    children: React.ReactNode
+}
+
+const Modal = ({visible, children}: ModalProps) => {
     // const ref = useRef(null)
     //
     // const showModal = () => ref.current?.showModal()
@@ -20,7 +25,7 @@ const Modal = ({visible, children}) => {
 
     return (
         <dialog
-            className={'modal'}
+            className={classes.modal}
             // ref={ref}
         >
             {children}

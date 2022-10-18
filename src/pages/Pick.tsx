@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {RouteNames} from "../router";
 
 const Pick = () => {
+
     return (
         <div className={'flex flex-col gap-4'}>
             <h1>Выбери игру</h1>

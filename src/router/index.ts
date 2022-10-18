@@ -2,7 +2,6 @@ import React from "react";
 import Alias from "../pages/Alias";
 import Guess from "../pages/Guess";
 import Pick from "../pages/Pick";
-import Welcome from "../pages/Welcome";
 import Phrase from "../pages/Phrase";
 
 export interface IRoute {

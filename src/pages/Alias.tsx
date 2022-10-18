@@ -1,9 +1,9 @@
 import React, {useMemo, useState} from 'react';
 import {useTimer} from 'react-timer-hook';
-import {ReactComponent as Happy} from "../assets/happy.svg";
 import {getShuffled} from "../utils/utils";
 import {useAppSelector} from "../store/hooks";
 import Modal from "../components/Modal/Modal";
+import {imageLinks} from "../data";
 
 const Alias = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -33,45 +33,47 @@ const Alias = () => {
     }
 
     if (!isRunning) {
+
         return (
-            <div>
-                <h1>Алиас</h1>
-                <span>Нажми Старт для начала игры!</span>
-                <div style={{fontSize: '100px'}}>
-                    {seconds}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <button
-                        onClick={resetGame}
-                    >
-                        Старт
-                    </button>
-                </div>
-                {modalVisible && <Modal visible={modalVisible}
+            <>
+                {modalVisible && <Modal
                 >
                     <>
-                        <Happy style={{width: 120, height: 120}}/>
+                        <img src={imageLinks.happy} width={120} height={120}/>
                         <span>{`Верно: ${correct}`}</span>
                         <span>{`Пропущено: ${skip}`}</span>
                         <span>{`Итог: ${correct - skip}`}</span>
                         <button onClick={resetGame}>Старт</button>
                     </>
                 </Modal>}
-            </div>
+                <div>
+                    <h1>Алиас</h1>
+                    <span>Нажми Старт для начала игры!</span>
+                    <div className={'text-9xl'}>
+                        {seconds}
+                    </div>
+                    <button
+                        className={'block mx-auto'}
+                        onClick={resetGame}
+                    >
+                        Старт
+                    </button>
+                </div>
+            </>
+
         )
     }
 
     return (
         <div>
-            <div>
-                <span>{`Верно: ${correct}`}</span>
-                <span>{`Пропущено: ${skip}`}</span>
-                <span>{`Итог: ${correct - skip}`}</span>
+            <div className={'grid grid-cols-2 gap-4 text-7xl'}>
+                <span className={'text-red'}>{skip}</span>
+                <span className={'text-green'}>{correct}</span>
             </div>
 
             <h1>{shuffled[index].tat.toUpperCase()}</h1>
             <span>{shuffled[index].rus.toUpperCase()}</span>
-            <div style={{fontSize: '100px'}}>
+            <div className={'text-9xl'}>
                 {seconds}
             </div>
             <div className={'grid grid-cols-2 gap-4'}>

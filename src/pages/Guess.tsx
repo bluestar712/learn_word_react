@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ReactComponent as Happy} from "../assets/happy.svg";
-import {ReactComponent as Sad} from "../assets/sad.svg";
 import {IWord} from "../models/IWord";
 import {getShuffled} from "../utils/utils";
 import {useAppSelector} from "../store/hooks";
 import Modal from "../components/Modal/Modal";
+import {imageLinks} from "../data";
 
 const Guess = () => {
     const {words} = useAppSelector(state => state.word)
@@ -35,33 +34,31 @@ const Guess = () => {
 
     return (
         <>
-            <h1>{correct?.tat}</h1>
-            <audio src={`https://innostudy.ru/audio/${correct?.tat.toLowerCase()}.mp3`} controls>
-                Your browser does not support the audio element.
-            </audio>
-            {/*<audio src={correct?.audio} controls>*/}
-            {/*    Your browser does not support the audio element.*/}
-            {/*</audio>*/}
-            <div style={{marginTop: 16, display: 'flex', flexDirection: 'column'}}>
-                {list.map(({id, tat, rus}) =>
-                    <button
-                        key={id} style={{
-                        marginBottom: 16
-                    }}
-                        onClick={() => handleClick(id)}>{rus}</button>
-                )}
+            <div className={'grid grid-cols-1 gap-4'}>
+                <h1 className={'capitalize'}>{correct?.tat}</h1>
+                <audio src={`https://innostudy.ru/audio/${correct?.tat.toLowerCase()}.mp3`} controls>
+                    Your browser does not support the audio element.
+                </audio>
+                <div
+                    className={'mt-4 flex flex-col'}>
+                    {list.map(({id, tat, rus}) =>
+                        <button
+                            key={id}
+                            className={'mb-4'}
+                            onClick={() => handleClick(id)}>{rus}</button>
+                    )}
+                </div>
             </div>
             {modalIsOpen && <Modal
-                visible={modalIsOpen}
             >
-                {correct?.id === clicked?.id ? <Happy style={{width: 90, height: 90}}/> :
-                    <Sad style={{width: 90, height: 90}}/>}
+                <img src={correct?.id === clicked?.id ? imageLinks.happy : imageLinks.sad} width={90} height={90}/>
                 <h3>{correct?.id === clicked?.id ? 'Верно' : 'Неверно'}</h3>
                 <button
                     onClick={closeModal}>Далее
                 </button>
             </Modal>}
         </>
+
     );
 };
 
