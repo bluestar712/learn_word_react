@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import {useTelegram} from "./hooks/useTelegram";
 
 const App: FC = () => {
-    const {tg} = useTelegram();
+    const {tg, user} = useTelegram();
 
     useEffect(() => {
         tg.ready();
@@ -14,7 +14,7 @@ const App: FC = () => {
 
     return (
         <>
-            <Navbar/>
+            {!user && <Navbar/>}
             <main>
                 <AppRouter/>
             </main>
