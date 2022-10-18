@@ -74,29 +74,24 @@ const Alias = () => {
             <div style={{fontSize: '100px'}}>
                 {seconds}
             </div>
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-                <div>
-
-                    <button
-
-                        onClick={() => {
-                            setSkip(prevState => prevState + 1)
-                            setIndex(prevState => prevState + 1)
-                        }}
-                    >Пропустить
-                    </button>
-                    &nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;
-                    <button
-
-                        onClick={() => {
-                            setCorrect(prevState => prevState + 1)
-                            setIndex(prevState => prevState + 1)
-                        }}
-                    >
-                        Верно
-                    </button>
-                </div>
+            <div className={'grid grid-cols-2 gap-4'}>
+                <button
+                    className={'bg-red'}
+                    onClick={() => {
+                        setSkip(prevState => prevState + 1)
+                        setIndex(prevState => prevState + 1)
+                    }}
+                >Пропустить
+                </button>
+                <button
+                    className={'bg-green'}
+                    onClick={() => {
+                        setCorrect(prevState => prevState + 1)
+                        setIndex(prevState => prevState + 1)
+                    }}
+                >
+                    Верно
+                </button>
             </div>
 
         </div>
