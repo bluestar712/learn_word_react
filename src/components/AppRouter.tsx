@@ -1,11 +1,12 @@
 import React from 'react';
-import {Routes, Route} from 'react-router-dom';
-import {publicRoutes, RouteNames} from "../router";
+import {Route, Routes} from 'react-router-dom';
+import {RouteNames} from "../router";
 import Welcome from "../pages/Welcome";
 import Pick from "../pages/Pick";
 import Phrase from "../pages/Phrase";
 import Alias from "../pages/Alias";
 import Guess from "../pages/Guess";
+import Collect from "../pages/Collect";
 
 const AppRouter = () => {
     return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
             <Route path={RouteNames.ALIAS} element={<Alias/>}/>
             <Route path={RouteNames.GUESS} element={<Guess/>}/>
             <Route path={RouteNames.MAIN} element={<Welcome/>}/>
+            <Route path={RouteNames.COLLECT} element={<Collect/>}/>
             <Route index element={<Welcome/>}/>
         </Routes>
 

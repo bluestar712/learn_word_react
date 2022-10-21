@@ -16,6 +16,9 @@ const Pick = () => {
             <Link to={RouteNames.ALIAS}>
                 <button>Alias</button>
             </Link>
+            <Link to={RouteNames.COLLECT}>
+                <button>Собери</button>
+            </Link>
             <a href={RouteNames.TELEGRAM}>
                 <button>Telegram</button>
             </a>
