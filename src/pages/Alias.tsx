@@ -3,6 +3,7 @@ import {useTimer} from 'react-timer-hook';
 import {getShuffled} from "helpers/utils";
 import {useAppSelector} from "store/hooks";
 import {imageLinks} from "data";
+import Modal from "components/Modal";
 
 const Alias = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -35,16 +36,14 @@ const Alias = () => {
 
     return (
       <>
-        {modalVisible && <dialog open={true}
+        <Modal open={modalVisible}
         >
-            <>
-                <img src={imageLinks.happy} width={120} height={120}/>
-                <span>{`Верно: ${correct}`}</span>
-                <span>{`Пропущено: ${skip}`}</span>
-                <span>{`Итог: ${correct - skip}`}</span>
-                <button onClick={resetGame}>Старт</button>
-            </>
-        </dialog>}
+          <img src={imageLinks.happy} width={120} height={120}/>
+          <span>{`Верно: ${correct}`}</span>
+          <span>{`Пропущено: ${skip}`}</span>
+          <span>{`Итог: ${correct - skip}`}</span>
+          <button onClick={resetGame}>Старт</button>
+        </Modal>
         <div>
           <h1>Алиас</h1>
           <span>Нажми Старт для начала игры!</span>

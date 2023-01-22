@@ -4,6 +4,7 @@ import {useAppSelector} from "store/hooks";
 import {IWord} from "types";
 import Audio from "components/Audio";
 import Icon from "components/Icon";
+import Modal from "../components/Modal";
 
 export interface CollectProps {
   id: number,
@@ -82,15 +83,13 @@ const Collect = () => {
         <button disabled={chosens.length === 0} className={'disabled:bg-red'} onClick={handleCheck}>Проверить
         </button>
       </div>
-      {
-        open && <dialog open={true}>
-              <Icon correct={isTrue}/>
-              <h3>{isTrue ? 'Верно' : 'Неверно'}</h3>
-              <button
-                  onClick={closeModal}>Далее
-              </button>
-          </dialog>
-      }
+      <Modal open={open}>
+        <Icon correct={isTrue}/>
+        <h3>{isTrue ? 'Верно' : 'Неверно'}</h3>
+        <button
+          onClick={closeModal}>Далее
+        </button>
+      </Modal>
     </>
   );
 };
