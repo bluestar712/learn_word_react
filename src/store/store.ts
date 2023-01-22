@@ -1,11 +1,9 @@
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
-import wordReducer from './reducers/word/wordSlice';
-import phraseReducer from './reducers/phrase/phraseSlice';
+import rootReducer from './reducers/root/rootSlice';
 
 export const store = configureStore({
     reducer: {
-        word: wordReducer,
-        phrase: phraseReducer
+        root: rootReducer,
     },
 });
 

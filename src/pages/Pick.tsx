@@ -26,9 +26,11 @@ const Pick = () => {
   return (
     <div className={'flex flex-col gap-4'}>
       <h1>Выбери игру</h1>
-      {links.map(({route, label}) => <Link key={route} to={route}>
-        <button>{label}</button>
-      </Link>)}
+      {links.map(({route, label}) =>
+        <Link key={route} to={route}>
+          <button>{label}</button>
+        </Link>
+      )}
       <a href={routes.TELEGRAM}>
         <button>Telegram</button>
       </a>

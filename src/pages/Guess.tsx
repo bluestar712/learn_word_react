@@ -1,63 +1,45 @@
-import React, {useEffect, useState} from 'react';
-import {IWord} from "types";
+import Audio from "components/Audio";
+import Icon from "components/Icon";
 import {getShuffled} from "helpers/utils";
+import React, {useMemo, useState} from 'react';
 import {useAppSelector} from "store/hooks";
-import {imageLinks} from "data";
+import {IWord} from "types";
 
 const Guess = () => {
-  const words = useAppSelector(state => state.word.words)
-  const [list, setList] = useState<IWord[]>([])
-  const [correct, setCorrect] = useState<IWord | undefined>(undefined)
-  const [clicked, setClicked] = useState<IWord | undefined>(undefined)
-  const [open, setOpen] = useState(false);
+  const words = useAppSelector(state => state.root.words)
+  const [list, setList] = useState<IWord[]>(() => getShuffled(words).slice(0, 4))
+  const correct = useMemo(() => getShuffled(list)[0], [list])
+  const [answer, setAnswer] = useState<IWord | undefined>(undefined)
 
-  useEffect(() => {
-    const tempList = getShuffled(words).slice(0, 4)
-    setList(tempList)
-    setCorrect(getShuffled(tempList)[0])
-  }, [])
-
-
-  const closeModal = () => {
-    setClicked(undefined)
-    const tempList = getShuffled(words).slice(0, 4)
-    setList(tempList)
-    setCorrect(getShuffled(tempList)[0])
-    setOpen(false);
+  const handleNext = () => {
+    setAnswer(undefined)
+    setList(getShuffled(words).slice(0, 4))
   }
 
-  const handleClick = (id: number) => {
-    setClicked(list.find(x => x.id === id))
-    setOpen(true);
-  }
-
-  if (!correct) {
-    return null
+  const handleAnswer = (id: number) => {
+    setAnswer(list.find(x => x.id === id))
   }
 
   return (
     <>
       <div className='grid grid-cols-1 gap-4'>
         <h1 className='capitalize'>{correct.tat}</h1>
-        <audio src={`https://innostudy.ru/audio/${correct.tat.toLowerCase()}.mp3`} controls>
-          Your browser does not support the audio element.
-        </audio>
-        <div
-          className='mt-4 flex flex-col'>
-          {list.map(({id, tat, rus}) =>
+        <Audio text={'words/' + correct.tat.toLowerCase()}/>
+        <div className='mt-4 flex flex-col'>
+          {list.map(({id, rus}) =>
             <button
               key={id}
               className='mb-4'
-              onClick={() => handleClick(id)}>{rus}</button>
+              onClick={() => handleAnswer(id)}>{rus}</button>
           )}
         </div>
       </div>
-      {open &&
+      {answer &&
           <dialog open={true}>
-              <img src={correct.id === clicked?.id ? imageLinks.happy : imageLinks.sad} width={90} height={90}/>
-              <h3>{correct.id === clicked?.id ? 'Верно' : 'Неверно'}</h3>
+              <Icon correct={correct.id === answer.id}/>
+              <h3>{correct.id === answer?.id ? 'Верно' : 'Неверно'}</h3>
               <button
-                  onClick={closeModal}>Далее
+                  onClick={handleNext}>Далее
               </button>
           </dialog>}
     </>

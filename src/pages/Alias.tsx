@@ -9,7 +9,7 @@ const Alias = () => {
   const [index, setIndex] = useState(0)
   const [correct, setCorrect] = useState(0)
   const [skip, setSkip] = useState(0)
-  const {words} = useAppSelector(state => state.word);
+  const words = useAppSelector(state => state.root.words);
 
   const shuffled = useMemo(() =>
       getShuffled(words)

@@ -1,6 +1,11 @@
 {
   "name": "Chamala",
   "version": "0.1.2",
+  "description": "App to Learn Tatar",
+  "main": "index.js",
+  "repository": "https://github.com/maratismodest/chamala-frontend.git",
+  "author": "Marat Faizerakhmanov <maratismodest@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.11.4",
@@ -61,9 +66,4 @@
     "stylelint-config-tailwindcss": "^0.0.7",
     "tailwindcss": "^3.2.4"
   },
-  "description": "App to Learn Tatar",
-  "main": "index.js",
-  "repository": "https://github.com/maratismodest/chamala-frontend.git",
-  "author": "Marat Faizerakhmanov <maratismodest@gmail.com>",
-  "license": "MIT"
 }
