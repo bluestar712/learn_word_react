@@ -1,1 +1,5 @@
-# Chamala 18-10-22
+# Chamala 22-01-23
+
+yarn install
+
+yarn start
