@@ -6,9 +6,7 @@ on:
     branches: [ main ]
 
 env:
-  NEXT_PUBLIC_IMAGES_DOMAIN: 'chamala.tatar'
-  NEXT_PUBLIC_API_URL: 'https://chamala.tatar'
-  NEXT_PUBLIC_NODE_ENV: 'production'
+  CI: false
 
 jobs:
   init:
