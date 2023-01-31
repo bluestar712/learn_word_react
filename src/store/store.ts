@@ -1,15 +1,26 @@
-import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
-import rootReducer from './reducers/root/rootSlice';
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {postAPI} from "services/PostService";
+import {wordAPI} from "services/WordService";
 
-export const store = configureStore({
-    reducer: {
-        root: rootReducer,
-    },
-});
+import appReducer from './reducers/AppSlice'
+import userReducer from './reducers/UserSlice'
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
-    RootState,
-    unknown,
-    Action<string>>;
+const rootReducer = combineReducers({
+    appReducer,
+    userReducer,
+    [postAPI.reducerPath]: postAPI.reducer,
+    [wordAPI.reducerPath]: wordAPI.reducer
+})
+
+export const setupStore = () => {
+    return configureStore({
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware()
+                .concat(postAPI.middleware).concat(wordAPI.middleware)
+    })
+}
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']

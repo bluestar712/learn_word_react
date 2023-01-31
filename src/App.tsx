@@ -1,7 +1,8 @@
-import {Link} from "react-router-dom";
 import AppRouter from "appRouter/AppRouter";
 import {useTelegram} from "hooks/useTelegram";
 import React, {FC, useEffect} from 'react';
+import {Link} from "react-router-dom";
+
 import {routes} from "./appRouter";
 
 const App: FC = () => {

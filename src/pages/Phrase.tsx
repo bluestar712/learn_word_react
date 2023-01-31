@@ -1,9 +1,9 @@
-import React from 'react';
-import {useAppSelector} from "store/hooks";
+import {useAppSelector} from "hooks/redux";
 import GuessModule from "modules/GuessModule";
+import React from 'react';
 
 const Phrase = () => {
-  const phrases = useAppSelector(state => state.root.phrases)
+  const phrases = useAppSelector(state => state.appReducer.phrases)
   return (
     <GuessModule collection={phrases} option='phrases'/>
   )
