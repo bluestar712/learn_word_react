@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {phrases, words} from "data";
+import {phrases, words} from "store/backend";
 import {IWord} from "types";
 
 interface AppState {

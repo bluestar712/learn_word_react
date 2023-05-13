@@ -13,7 +13,7 @@ export const wordAPI = createApi({
                     _limit: limit
                 }
             }),
-            providesTags: result => ['Word']
+            providesTags: () => ['Word']
         }),
         createPost: build.mutation<IWord, IWord>({
             query: (word) => ({

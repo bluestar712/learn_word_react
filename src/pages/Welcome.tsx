@@ -1,7 +1,7 @@
-import {routes} from "appRouter";
 import {imageLinks} from "data";
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
+import {routes} from "types";
 
 const Welcome: FC = () => {
   return (
