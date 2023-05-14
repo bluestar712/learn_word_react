@@ -3,54 +3,126 @@
 @tailwind utilities;
 
 @layer base {
-  dialog {
-    max-width: 300px;
-    width: 80%;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    dialog {
+        /* max-width: 300px; */
 
-  button {
-    cursor: pointer;
-    background: #0f8012;
-    border: none;
-    min-height: 40px;
-    border-radius: 40px;
-    color: #fff;
-    padding: 8px 16px;
-  }
+        /* width: 80%; */
+        max-width: 100%;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-  h1 {
-    @apply max-w-lg text-3xl;
-  }
+    dialog[open] {
+        opacity: 1;
+        pointer-events: auto;
+        animation: slidein 0.3s forwards;
+    }
 
-  a {
-    color: #0f8012;
-    text-decoration: none;
-  }
+    dialog::backdrop {
+        background-color: rgb(255 255 255 / 60%);
+        animation: fadein 0.3s forwards;
+    }
+
+    dialog.close[open] {
+        animation: slideout 0.3s forwards;
+    }
+
+    dialog.close::backdrop {
+        animation: fadeout 0.3s forwards;
+    }
+
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes slidein {
+        from {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+
+        to {
+            bottom: -100vh;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideout {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    }
+
+
+    button {
+        cursor: pointer;
+        background: #0f8012;
+        border: none;
+        min-height: 40px;
+        border-radius: 40px;
+        color: #fff;
+        padding: 8px 16px;
+    }
+
+    button:disabled {
+        background: gray;
+    }
+
+    h1 {
+        @apply max-w-lg text-3xl;
+    }
+
+    a {
+        color: #0f8012;
+        text-decoration: none;
+    }
 }
 
 * {
-  text-align: center;
+    text-align: center;
 }
 
 main {
-  display: flex;
-  background: #fff;
-  height: calc(100vh - 134px);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+    display: flex;
+    background: #fff;
+    height: calc(100vh - 134px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
 }
 
 footer {
-  background: #fff !important;
-  display: flex;
-  justify-content: center;
+    background: #fff !important;
+    display: flex;
+    justify-content: center;
 }
