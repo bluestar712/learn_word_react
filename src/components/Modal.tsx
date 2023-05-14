@@ -1,14 +1,24 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react'
 
-type ModalProps = React.DialogHTMLAttributes<HTMLDialogElement>
-
-export default function Modal({children, open = false}: ModalProps) {
-  if (!open) {
-    return null
-  }
-  return (
-    <dialog open={open}>
-      {children}
-    </dialog>
-  );
+interface ModalProps extends React.HTMLProps<HTMLDialogElement> {
+  open: boolean
 }
+
+const Modal = ({open, children, className = ''}: ModalProps): JSX.Element => {
+  const ref = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      if (open) {
+        ref.current.showModal()
+      } else {
+        ref.current.close()
+      }
+    }
+    return () => ref.current?.close();
+  }, [open])
+
+  return <dialog ref={ref} className={className}>{children}</dialog>
+}
+
+export default Modal
