@@ -1,12 +1,13 @@
 import Audio from "components/Audio";
 import Icon from "components/Icon";
 import Modal from "components/Modal";
+import Spinner from "components/Spinner";
 import {getShuffled} from "helpers/utils";
 import {useAppSelector} from "hooks/redux";
 import React, {useCallback, useEffect, useState} from 'react';
 import {IWord} from "types";
 
-export interface CollectProps {
+interface CollectProps {
   id: number,
   word: string
 }
@@ -43,13 +44,13 @@ const Collect = () => {
   }
 
   const handleAdd = (x: CollectProps) => {
-    setChosens(prevState => [...prevState, x])
-    setOptions(prevState => prevState.filter(item => item.id !== x.id))
+    setChosens(prev => [...prev, x])
+    setOptions(prev => prev.filter(item => item.id !== x.id))
   }
 
   const handleRemove = (x: CollectProps) => {
-    setChosens(prevState => prevState.filter(item => item.id !== x.id))
-    setOptions(prevState => [...prevState, x])
+    setChosens(prev => prev.filter(item => item.id !== x.id))
+    setOptions(prev => [...prev, x])
   }
 
   const handleCheck = () => {
@@ -60,7 +61,7 @@ const Collect = () => {
   }
 
   if (!correct) {
-    return null
+    return <Spinner/>
   }
 
   return (
@@ -70,18 +71,20 @@ const Collect = () => {
         <Audio text={'phrases/' + correct.tat.toLowerCase()}/>
         <ul className='flex gap-4 min-h-[100px] flex-wrap'>
           {chosens.map(x =>
-            <li key={x.id} className='border h-fit cursor-pointer w-fit px-4 py-2 rounded'
+            <li key={x.id}
+                className='border h-fit cursor-pointer w-fit px-4 py-2 rounded'
                 onClick={() => handleRemove(x)}>{x.word}
             </li>)}
         </ul>
         <hr/>
         <ul className='flex gap-4 min-h-[100px] flex-wrap'>
-          {options.map(x => <li key={x.id} className={'border h-fit cursor-pointer w-fit px-4 py-2 rounded'}
-                                onClick={() => handleAdd(x)}>{x.word}</li>)}
-
+          {options.map(x =>
+            <li key={x.id}
+                className={'border h-fit cursor-pointer w-fit px-4 py-2 rounded'}
+                onClick={() => handleAdd(x)}>{x.word}
+            </li>)}
         </ul>
-        <button disabled={chosens.length === 0} className='disabled:bg-red' onClick={handleCheck}>Проверить
-        </button>
+        <button disabled={chosens.length === 0} className='disabled:bg-red' onClick={handleCheck}>Проверить</button>
       </div>
       <Modal open={open}>
         <Icon correct={isTrue}/>

@@ -38,14 +38,13 @@ const GuessModule = ({collection, option}: GuessModuleProps) => {
           )}
         </div>
       </div>
-      {answer &&
-          <Modal open={answer ? true : false}>
-              <Icon correct={correct.id === answer.id}/>
-              <h3>{correct.id === answer?.id ? 'Верно' : 'Неверно'}</h3>
-              <button
-                  onClick={handleNext}>Далее
-              </button>
-          </Modal>}
+      <Modal open={answer ? true : false}>
+        <Icon correct={correct.id === answer?.id}/>
+        <h3>{correct.id === answer?.id ? 'Верно' : 'Неверно'}</h3>
+        <button
+          onClick={handleNext}>Далее
+        </button>
+      </Modal>
     </>
 
   );

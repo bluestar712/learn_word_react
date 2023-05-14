@@ -4,7 +4,7 @@ interface ModalProps extends React.HTMLProps<HTMLDialogElement> {
   open: boolean
 }
 
-const Modal = ({open, children, className = ''}: ModalProps): JSX.Element => {
+const Modal = ({open, children, className = ''}: ModalProps) => {
   const ref = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -17,6 +17,10 @@ const Modal = ({open, children, className = ''}: ModalProps): JSX.Element => {
     }
     return () => ref.current?.close();
   }, [open])
+
+  if (!open) {
+    return null
+  }
 
   return <dialog ref={ref} className={className}>{children}</dialog>
 }
