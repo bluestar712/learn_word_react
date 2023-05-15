@@ -1,16 +1,20 @@
-import {imageLinks} from "data";
+import {ReactComponent as HappyIcon} from 'assets/happy.svg';
+import {ReactComponent as SadIcon} from 'assets/sad.svg';
 import React from 'react';
 
 interface IconProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   correct: boolean
 }
 
+const props = {
+  width: 90,
+  height: 90
+}
+const Fox = ({correct}: { correct: boolean }) => correct ? <HappyIcon/> : <SadIcon/>
+
 export default function Icon({correct}: IconProps) {
+
   return (
-    <img src={correct ? imageLinks.happy : imageLinks.sad}
-         alt='status'
-         width={90}
-         height={90}
-    />
+    <Fox correct={correct} {...props} />
   );
 }
