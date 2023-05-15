@@ -48,7 +48,7 @@ const App: FC = () => {
   return (
     <>
       <header className='flex items-center p-4 text-green font-bold'>
-        <Link to={routes.MAIN}>Chamala</Link>
+        <Link to={routes.MAIN}>Illia</Link>
       </header>
       <main>
         <Suspense fallback={<Spinner/>}>

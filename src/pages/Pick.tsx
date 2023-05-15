@@ -31,9 +31,6 @@ const Pick = () => {
           <button>{label}</button>
         </Link>
       )}
-      <a href={routes.TELEGRAM}>
-        <button>Telegram</button>
-      </a>
     </div>
   );
 };

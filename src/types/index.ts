@@ -30,6 +30,5 @@ export enum routes {
   ALIAS = '/alias',
   PHRASE = '/phrase',
   COLLECT = '/collect',
-  TELEGRAM = 'https://t.me/ChamalaBot'
 }
 
