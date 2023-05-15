@@ -10,7 +10,7 @@ const props = {
   width: 90,
   height: 90
 }
-const Fox = ({correct}: { correct: boolean }) => correct ? <HappyIcon/> : <SadIcon/>
+const Fox = ({correct}: { correct: boolean }) => correct ? <HappyIcon {...props} /> : <SadIcon {...props} />
 
 export default function Icon({correct}: IconProps) {
 
